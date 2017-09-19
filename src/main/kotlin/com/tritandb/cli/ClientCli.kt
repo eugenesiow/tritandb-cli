@@ -8,6 +8,7 @@ import org.zeromq.ZMQ
 import com.tritandb.engine.tsc.data.EventProtos.TritanEvent.EventType.*
 import com.tritandb.engine.tsc.data.buildTritanEvent
 import com.xenomachina.argparser.mainBody
+import java.net.InetAddress
 import kotlin.system.measureTimeMillis
 
 /**
@@ -18,7 +19,7 @@ class ClientCli {
     companion object: Any(), KLoggable {
         override val logger = logger()
         @JvmStatic fun main(args: Array<String>) = mainBody("tritandb-cli") {
-            logger.info("starting cli...")
+            logger.info("starting cli for ${InetAddress.getLocalHost().hostAddress}...")
             val parser = ArgParser(args, ArgParser.Mode.GNU, DefaultHelpFormatter())
             val cli = ClientParser(parser)
 

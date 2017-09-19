@@ -359,7 +359,7 @@ public final class EventProtos {
                 Row.class, Builder.class);
       }
 
-      // Construct using com.tritandb.engine.tsc.EventProtos.Row.newBuilder()
+      // Construct using com.tritandb.engine.tsc.data.EventProtos.Row.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -503,7 +503,7 @@ public final class EventProtos {
        * <code>int64 timestamp = 1;</code>
        */
       public Builder setTimestamp(long value) {
-
+        
         timestamp_ = value;
         onChanged();
         return this;
@@ -512,7 +512,7 @@ public final class EventProtos {
        * <code>int64 timestamp = 1;</code>
        */
       public Builder clearTimestamp() {
-
+        
         timestamp_ = 0L;
         onChanged();
         return this;
@@ -940,7 +940,7 @@ public final class EventProtos {
                 Rows.class, Builder.class);
       }
 
-      // Construct using com.tritandb.engine.tsc.EventProtos.Rows.newBuilder()
+      // Construct using com.tritandb.engine.tsc.data.EventProtos.Rows.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1055,7 +1055,7 @@ public final class EventProtos {
               rowBuilder_ = null;
               row_ = other.row_;
               bitField0_ = (bitField0_ & ~0x00000001);
-              rowBuilder_ =
+              rowBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getRowFieldBuilder() : null;
             } else {
@@ -1594,7 +1594,7 @@ public final class EventProtos {
       if (ref instanceof String) {
         return (String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         name_ = s;
@@ -1608,7 +1608,7 @@ public final class EventProtos {
         getNameBytes() {
       Object ref = name_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (String) ref);
         name_ = b;
@@ -1811,7 +1811,7 @@ public final class EventProtos {
                 Col.class, Builder.class);
       }
 
-      // Construct using com.tritandb.engine.tsc.EventProtos.Col.newBuilder()
+      // Construct using com.tritandb.engine.tsc.data.EventProtos.Col.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -1953,7 +1953,7 @@ public final class EventProtos {
           getNameBytes() {
         Object ref = name_;
         if (ref instanceof String) {
-          com.google.protobuf.ByteString b =
+          com.google.protobuf.ByteString b = 
               com.google.protobuf.ByteString.copyFromUtf8(
                   (String) ref);
           name_ = b;
@@ -1970,7 +1970,7 @@ public final class EventProtos {
         if (value == null) {
     throw new NullPointerException();
   }
-
+  
         name_ = value;
         onChanged();
         return this;
@@ -1979,7 +1979,7 @@ public final class EventProtos {
        * <code>string name = 1;</code>
        */
       public Builder clearName() {
-
+        
         name_ = getDefaultInstance().getName();
         onChanged();
         return this;
@@ -1993,7 +1993,7 @@ public final class EventProtos {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
-
+        
         name_ = value;
         onChanged();
         return this;
@@ -2028,7 +2028,7 @@ public final class EventProtos {
         if (value == null) {
           throw new NullPointerException();
         }
-
+        
         type_ = value.getNumber();
         onChanged();
         return this;
@@ -2037,7 +2037,7 @@ public final class EventProtos {
        * <code>.com.tritandb.Col.ColType type = 2;</code>
        */
       public Builder clearType() {
-
+        
         type_ = 0;
         onChanged();
         return this;
@@ -2399,7 +2399,7 @@ public final class EventProtos {
                 Cols.class, Builder.class);
       }
 
-      // Construct using com.tritandb.engine.tsc.EventProtos.Cols.newBuilder()
+      // Construct using com.tritandb.engine.tsc.data.EventProtos.Cols.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -2514,7 +2514,7 @@ public final class EventProtos {
               colBuilder_ = null;
               col_ = other.col_;
               bitField0_ = (bitField0_ & ~0x00000001);
-              colBuilder_ =
+              colBuilder_ = 
                 com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
                    getColFieldBuilder() : null;
             } else {
@@ -2861,6 +2861,16 @@ public final class EventProtos {
         getNameBytes();
 
     /**
+     * <code>string address = 3;</code>
+     */
+    String getAddress();
+    /**
+     * <code>string address = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getAddressBytes();
+
+    /**
      * <code>.com.tritandb.Rows rows = 4;</code>
      */
     boolean hasRows();
@@ -2900,6 +2910,7 @@ public final class EventProtos {
     private TritanEvent() {
       type_ = 0;
       name_ = "";
+      address_ = "";
     }
 
     @Override
@@ -2937,6 +2948,12 @@ public final class EventProtos {
               String s = input.readStringRequireUtf8();
 
               name_ = s;
+              break;
+            }
+            case 26: {
+              String s = input.readStringRequireUtf8();
+
+              address_ = s;
               break;
             }
             case 34: {
@@ -3139,7 +3156,7 @@ public final class EventProtos {
       if (ref instanceof String) {
         return (String) ref;
       } else {
-        com.google.protobuf.ByteString bs =
+        com.google.protobuf.ByteString bs = 
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         name_ = s;
@@ -3153,10 +3170,44 @@ public final class EventProtos {
         getNameBytes() {
       Object ref = name_;
       if (ref instanceof String) {
-        com.google.protobuf.ByteString b =
+        com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (String) ref);
         name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int ADDRESS_FIELD_NUMBER = 3;
+    private volatile Object address_;
+    /**
+     * <code>string address = 3;</code>
+     */
+    public String getAddress() {
+      Object ref = address_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        address_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string address = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getAddressBytes() {
+      Object ref = address_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (String) ref);
+        address_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -3223,6 +3274,9 @@ public final class EventProtos {
       if (!getNameBytes().isEmpty()) {
         com.google.protobuf.GeneratedMessageV3.writeString(output, 2, name_);
       }
+      if (!getAddressBytes().isEmpty()) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 3, address_);
+      }
       if (rows_ != null) {
         output.writeMessage(4, getRows());
       }
@@ -3242,6 +3296,9 @@ public final class EventProtos {
       }
       if (!getNameBytes().isEmpty()) {
         size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, name_);
+      }
+      if (!getAddressBytes().isEmpty()) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(3, address_);
       }
       if (rows_ != null) {
         size += com.google.protobuf.CodedOutputStream
@@ -3270,6 +3327,8 @@ public final class EventProtos {
       result = result && type_ == other.type_;
       result = result && getName()
           .equals(other.getName());
+      result = result && getAddress()
+          .equals(other.getAddress());
       result = result && (hasRows() == other.hasRows());
       if (hasRows()) {
         result = result && getRows()
@@ -3294,6 +3353,8 @@ public final class EventProtos {
       hash = (53 * hash) + type_;
       hash = (37 * hash) + NAME_FIELD_NUMBER;
       hash = (53 * hash) + getName().hashCode();
+      hash = (37 * hash) + ADDRESS_FIELD_NUMBER;
+      hash = (53 * hash) + getAddress().hashCode();
       if (hasRows()) {
         hash = (37 * hash) + ROWS_FIELD_NUMBER;
         hash = (53 * hash) + getRows().hashCode();
@@ -3414,7 +3475,7 @@ public final class EventProtos {
                 TritanEvent.class, Builder.class);
       }
 
-      // Construct using com.tritandb.engine.tsc.EventProtos.TritanEvent.newBuilder()
+      // Construct using com.tritandb.engine.tsc.data.EventProtos.TritanEvent.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
@@ -3434,6 +3495,8 @@ public final class EventProtos {
         type_ = 0;
 
         name_ = "";
+
+        address_ = "";
 
         if (rowsBuilder_ == null) {
           rows_ = null;
@@ -3471,6 +3534,7 @@ public final class EventProtos {
         TritanEvent result = new TritanEvent(this);
         result.type_ = type_;
         result.name_ = name_;
+        result.address_ = address_;
         if (rowsBuilder_ == null) {
           result.rows_ = rows_;
         } else {
@@ -3527,6 +3591,10 @@ public final class EventProtos {
         }
         if (!other.getName().isEmpty()) {
           name_ = other.name_;
+          onChanged();
+        }
+        if (!other.getAddress().isEmpty()) {
+          address_ = other.address_;
           onChanged();
         }
         if (other.hasRows()) {
@@ -3670,6 +3738,75 @@ public final class EventProtos {
   checkByteStringIsUtf8(value);
         
         name_ = value;
+        onChanged();
+        return this;
+      }
+
+      private Object address_ = "";
+      /**
+       * <code>string address = 3;</code>
+       */
+      public String getAddress() {
+        Object ref = address_;
+        if (!(ref instanceof String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          String s = bs.toStringUtf8();
+          address_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      /**
+       * <code>string address = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getAddressBytes() {
+        Object ref = address_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (String) ref);
+          address_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string address = 3;</code>
+       */
+      public Builder setAddress(
+          String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  
+        address_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string address = 3;</code>
+       */
+      public Builder clearAddress() {
+        
+        address_ = getDefaultInstance().getAddress();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string address = 3;</code>
+       */
+      public Builder setAddressBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  checkByteStringIsUtf8(value);
+        
+        address_ = value;
         onChanged();
         return this;
       }
@@ -3996,14 +4133,15 @@ public final class EventProtos {
       "l\022\014\n\004name\030\001 \001(\t\022\'\n\004type\030\002 \001(\0162\031.com.trit" +
       "andb.Col.ColType\",\n\007ColType\022\010\n\004LONG\020\000\022\n\n" +
       "\006DOUBLE\020\001\022\013\n\007BOOLEAN\020\002\"&\n\004Cols\022\036\n\003col\030\001 " +
-      "\003(\0132\021.com.tritandb.Col\"\344\001\n\013TritanEvent\0221" +
+      "\003(\0132\021.com.tritandb.Col\"\365\001\n\013TritanEvent\0221" +
       "\n\004type\030\001 \001(\0162#.com.tritandb.TritanEvent." +
-      "EventType\022\014\n\004name\030\002 \001(\t\022 \n\004rows\030\004 \001(\0132\022." +
-      "com.tritandb.Rows\022 \n\004cols\030\005 \001(\0132\022.com.tr",
-      "itandb.Cols\"P\n\tEventType\022\n\n\006INSERT\020\000\022\020\n\014" +
-      "INSERT_BATCH\020\001\022\t\n\005CLOSE\020\002\022\t\n\005QUERY\020\003\022\017\n\013" +
-      "INSERT_META\020\004B+\n\034com.tritandb.engine.tsc" +
-      ".dataB\013EventProtosb\006proto3"
+      "EventType\022\014\n\004name\030\002 \001(\t\022\017\n\007address\030\003 \001(\t" +
+      "\022 \n\004rows\030\004 \001(\0132\022.com.tritandb.Rows\022 \n\004co",
+      "ls\030\005 \001(\0132\022.com.tritandb.Cols\"P\n\tEventTyp" +
+      "e\022\n\n\006INSERT\020\000\022\020\n\014INSERT_BATCH\020\001\022\t\n\005CLOSE" +
+      "\020\002\022\t\n\005QUERY\020\003\022\017\n\013INSERT_META\020\004B+\n\034com.tr" +
+      "itandb.engine.tsc.dataB\013EventProtosb\006pro" +
+      "to3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -4046,7 +4184,7 @@ public final class EventProtos {
     internal_static_com_tritandb_TritanEvent_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_com_tritandb_TritanEvent_descriptor,
-        new String[] { "Type", "Name", "Rows", "Cols", });
+        new String[] { "Type", "Name", "Address", "Rows", "Cols", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)
