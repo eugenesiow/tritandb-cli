@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tritandb-cli.iml" filepath="$PROJECT_DIR$/.idea/modules/tritandb-cli.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tritandb-cli_main.iml" filepath="$PROJECT_DIR$/.idea/modules/tritandb-cli_main.iml" group="tritandb-cli" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tritandb-cli_test.iml" filepath="$PROJECT_DIR$/.idea/modules/tritandb-cli_test.iml" group="tritandb-cli" />
+    </modules>
+  </component>
+</project>
