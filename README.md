@@ -9,14 +9,22 @@ Usage
 -------
 
 ```
-usage: tritandb-cli [-h] [--ingest]
+usage: tritandb-cli [-h] --ingest [-H HOST] [-P PORT]
 
-optional arguments:
-  -h, --help  show this help message and exit
-
-  --ingest,   mode of operation
+required arguments:
+  --ingest,     Command/Mode of Operation
   --query,
   --list
+
+
+optional arguments:
+  -h, --help    show this help message and exit
+
+  -H HOST,      Server Host e.g. localhost or 192.168.0.100
+  --host HOST
+
+  -P PORT,      Server Port e.g. 5700
+  --port PORT
 ```
 
 

@@ -14,9 +14,13 @@ class ClientParser(parser: ArgParser) {
             "--ingest" to Mode.INGEST,
             "--query" to Mode.RANGE_QUERY,
             "--list" to Mode.LIST,
-            help = "mode of operation"
-    ).default(Mode.RANGE_QUERY)
-//    val dataset by parser.storing("-d", "--dataset",
-//            help = "dataset") { toLowerCase() }
+            help = "Command/Mode of Operation"
+    )
+    val serverHost by parser.storing("-H", "--host",
+            help = "Server Host e.g. localhost or 192.168.0.100").default("localhost")
+    val serverPort by parser.storing("-P", "--port",
+            help = "Server Port e.g. 5700").default("5700")
+    val query by parser.storing("-Q", "--query_syn",
+            help = "Query Syntax").default(null)
 //    val sourceFile by parser.positional("SOURCE", help = "source filename").default("")
 }
