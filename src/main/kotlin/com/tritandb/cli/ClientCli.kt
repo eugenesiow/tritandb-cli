@@ -11,6 +11,7 @@ import com.xenomachina.argparser.DefaultHelpFormatter
 import com.xenomachina.argparser.mainBody
 import mu.KLoggable
 import org.zeromq.ZMQ
+import java.io.File
 import java.net.InetAddress
 import java.util.*
 import kotlin.system.measureTimeMillis
@@ -24,7 +25,7 @@ class ClientCli {
         override val logger = logger()
         private val inetAddress = InetAddress.getLocalHost().hostAddress!!
         @JvmStatic fun main(args: Array<String>) = mainBody("tritandb-cli") {
-            logger.info("starting cli for ${inetAddress}...")
+            logger.info("starting cli for $inetAddress...")
             val parser = ArgParser(args, ArgParser.Mode.GNU, DefaultHelpFormatter())
             val cli = ClientParser(parser)
 
@@ -33,11 +34,22 @@ class ClientCli {
             sender.connect("tcp://${cli.serverHost}:${cli.serverPort}")
 
             val receiver = context.socket(ZMQ.PULL)
-            receiver.bind("tcp://${inetAddress}:5800")
+            receiver.bind("tcp://$inetAddress:5800")
 
             when (cli.mode) {
                 Mode.LIST -> LogTime { ListTimeSeries(sender,receiver) }
-                Mode.RANGE_QUERY -> LogTime { ExecuteQuery(sender,receiver,cli.query) }
+                Mode.RANGE_QUERY -> {
+                    var queryInput = cli.query
+                    if(cli.fileInput!=null) {
+                        val f = File(cli.fileInput)
+                        if(f.exists())
+                            queryInput = f.readText()
+                    }
+                    if(queryInput!=null)
+                        LogTime { ExecuteQuery(sender,receiver,queryInput!!) }
+                    else
+                        throw(Exception("Null query input."))
+                }
                 else -> println("No command specified. Please specify a command e.g. --ingest or --query.")
             }
 
@@ -46,34 +58,37 @@ class ClientCli {
             context.close()
         }
 
-        private fun ExecuteQuery(sender: ZMQ.Socket, receiver: ZMQ.Socket, query:String?) {
-            val fixedSeed = 100L
-            val rand = Random(fixedSeed)
-            val max = 1406141325958
-            val min = 1271692742104
-            val range = ((max + 1 - min )/100).toInt()
-
-            val a = (rand.nextInt(range))*100L + min
-            val b = (rand.nextInt(range))*100L + min
-            var start = a
-            var end = b
-            if(a>b) {
-                start = b
-                end = a
-            }
+        private fun ExecuteQuery(sender: ZMQ.Socket, receiver: ZMQ.Socket, query:String) {
+//            val fixedSeed = 100L
+//            val rand = Random(fixedSeed)
+//            val max = 1406141325958
+//            val min = 1271692742104
+//            val range = ((max + 1 - min )/100).toInt()
+//
+//            val a = (rand.nextInt(range))*100L + min
+//            val b = (rand.nextInt(range))*100L + min
+//            var start = a
+//            var end = b
+//            if(a>b) {
+//                start = b
+//                end = a
+//            }
+//            val event = buildTritanEvent {
+//                type = EventProtos.TritanEvent.EventType.QUERY
+//                name = "shelburne"
+//                address = inetAddress
+//                rows = buildRows {
+//                    addRow(buildRow {
+//                        timestamp = start
+//                        addValue(end)
+//                    })
+//                }
+//            }
             val event = buildTritanEvent {
                 type = EventProtos.TritanEvent.EventType.QUERY
-                name = "shelburne"
+                name = query
                 address = inetAddress
-                rows = buildRows {
-                    addRow(buildRow {
-                        timestamp = start
-                        addValue(end)
-                    })
-                }
             }
-            //SELECT * WHERE { FILTER(?time>="2010-06-27T02:20:08.704" && ?time<"2011-08-17T06:45:29.504) }"
-//            println("$start $end")
             sender.send(event.toByteArray())
             while (!Thread.currentThread().isInterrupted) {
                 val msg = receiver.recvStr()

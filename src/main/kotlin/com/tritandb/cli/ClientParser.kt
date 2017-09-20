@@ -22,5 +22,7 @@ class ClientParser(parser: ArgParser) {
             help = "Server Port e.g. 5700").default("5700")
     val query by parser.storing("-Q", "--query_syn",
             help = "Query Syntax").default(null)
+    val fileInput by parser.storing("-F", "--file",
+            help = "Input Query or Ingestion File").default(null)
 //    val sourceFile by parser.positional("SOURCE", help = "source filename").default("")
 }
