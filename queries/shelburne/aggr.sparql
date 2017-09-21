@@ -1,0 +1,11 @@
+PREFIX qudt: <http://qudt.org/2.0/schema/qudt/>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX time: <http://www.w3.org/2006/time#>
+SELECT (AVG(?v) as ?avgV)
+WHERE {  ?obs sosa:hasResult ?result;
+       sosa:observedProperty <http://tritandb.com/ns/iot/RelativeHumidity>;
+       sosa:resultTime ?time.
+   ?result qudt:numericValue ?v.
+   ?time time:inXSDDateTimeStamp ?timeVal.
+   FILTER(?timeVal>"2011-10-11T16:18:48" && ?timeVal<"2011-10-26T15:33:38")
+}

@@ -1,0 +1,31 @@
+PREFIX qudt: <http://qudt.org/2.0/schema/qudt/>
+PREFIX sosa: <http://www.w3.org/ns/sosa/>
+PREFIX time: <http://www.w3.org/2006/time#>
+SELECT ?timeVal ?vAirTemperature ?vSolarRadiation ?vSoilMoisture ?vLeafWetness ?vInternalTemperature ?vRelativeHumidity WHERE
+{ {  ?obsAirTemperature sosa:hasResult ?resultAirTemperature;
+       sosa:observedProperty <http://tritandb.com/ns/iot/AirTemperature>;
+       sosa:resultTime ?time.
+   ?resultAirTemperature qudt:numericValue ?vAirTemperature.}
+ UNION {  ?obsSolarRadiation sosa:hasResult ?resultSolarRadiation;
+       sosa:observedProperty <http://tritandb.com/ns/iot/SolarRadiation>;
+       sosa:resultTime ?time.
+   ?resultSolarRadiation qudt:numericValue ?vSolarRadiation.}
+ UNION {  ?obsSoilMoisture sosa:hasResult ?resultSoilMoisture;
+       sosa:observedProperty <http://tritandb.com/ns/iot/SoilMoisture>;
+       sosa:resultTime ?time.
+   ?resultSoilMoisture qudt:numericValue ?vSoilMoisture.}
+ UNION {  ?obsLeafWetness sosa:hasResult ?resultLeafWetness;
+       sosa:observedProperty <http://tritandb.com/ns/iot/LeafWetness>;
+       sosa:resultTime ?time.
+   ?resultLeafWetness qudt:numericValue ?vLeafWetness.}
+ UNION {  ?obsInternalTemperature sosa:hasResult ?resultInternalTemperature;
+       sosa:observedProperty <http://tritandb.com/ns/iot/InternalTemperature>;
+       sosa:resultTime ?time.
+   ?resultInternalTemperature qudt:numericValue ?vInternalTemperature.}
+ UNION {  ?obsRelativeHumidity sosa:hasResult ?resultRelativeHumidity;
+       sosa:observedProperty <http://tritandb.com/ns/iot/RelativeHumidity>;
+       sosa:resultTime ?time.
+   ?resultRelativeHumidity qudt:numericValue ?vRelativeHumidity.}
+   ?time time:inXSDDateTimeStamp ?timeVal.
+   FILTER(?timeVal>"2011-10-11T16:18:48" && ?timeVal<"2011-10-26T15:33:38")
+}

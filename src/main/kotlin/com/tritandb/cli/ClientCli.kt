@@ -59,31 +59,6 @@ class ClientCli {
         }
 
         private fun ExecuteQuery(sender: ZMQ.Socket, receiver: ZMQ.Socket, query:String) {
-//            val fixedSeed = 100L
-//            val rand = Random(fixedSeed)
-//            val max = 1406141325958
-//            val min = 1271692742104
-//            val range = ((max + 1 - min )/100).toInt()
-//
-//            val a = (rand.nextInt(range))*100L + min
-//            val b = (rand.nextInt(range))*100L + min
-//            var start = a
-//            var end = b
-//            if(a>b) {
-//                start = b
-//                end = a
-//            }
-//            val event = buildTritanEvent {
-//                type = EventProtos.TritanEvent.EventType.QUERY
-//                name = "shelburne"
-//                address = inetAddress
-//                rows = buildRows {
-//                    addRow(buildRow {
-//                        timestamp = start
-//                        addValue(end)
-//                    })
-//                }
-//            }
             val event = buildTritanEvent {
                 type = EventProtos.TritanEvent.EventType.QUERY
                 name = query
